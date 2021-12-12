@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 int menor(int x, int y){ return x <= y ? x : y; }
 
@@ -56,25 +57,85 @@ int fibonaccianSearch(int array[], int elementSearch, int n)
      // Elemento não encontrado
      return -1;
 }
+
+
+void limpatela(){ system("clear"); }
+
+void printaArray(int array[], int tamanhoArray){
+
+    for(int i = 0; i < tamanhoArray; i++){
+        printf("[%d]", array[i]);
+
+        if((i != 0) && (i % 20 == 0)){
+            printf("\n");
+        }
+
+    }
+
+    printf("\n\n");
+
+}
 //------------------------------------------------------------ MAIN --------------------------------------------------//
 
 int main(){
-
-     int tamanhoArray, elementSearch;
+    
+    int escolha,tamanhoArray, elementSearch;
+    bool loop = true;
 
     printf("Quantidade de elementos do array: ");
-    scanf("%d",&tamanhoArray);
+    scanf( "%d" , &tamanhoArray);
     int array[tamanhoArray];
+    for(int i = 0 ;i < tamanhoArray ;i++){ array[i] = i; }
 
-    for(int i = 0 ;i < tamanhoArray ;i++){
-        array[i] = i;
+    while(loop){
+
+        limpatela();
+        //printf("1 - Preencher array\n");
+        printf("2 - Procurar elemento\n");
+        printf("3 - Exibir array\n");
+        printf("Escolha: ");
+        
+        scanf( "%d" , &escolha );
+
+        switch (escolha){
+
+        case 1 :
+
+
+        break;
+
+        case 2 :
+
+            printf("\nElemento que procura: ");
+            scanf( "%d", &elementSearch);
+            fibonaccianSearch(array, elementSearch, tamanhoArray);
+
+            if(elementSearch != -1){
+
+                limpatela();
+                printf("Achado o elemento: %d\n\n", elementSearch);
+
+            }else{
+
+                limpatela();        
+                printf("Elemento não encontrado");
+
+            }
+
+        break;
+
+        case 3 :
+
+            printaArray(array,tamanhoArray);
+
+        break;
+        
+        default:
+            printf("Opção invalida, escolha outra\n");
+        break;
+        
+        }
     }
 
-    printf("\nElemento que procura: ");
-    scanf("%d",&elementSearch);
-
-    printf("Found at index: %d",fibonaccianSearch(array, elementSearch, tamanhoArray));
-    free(array);
-
-return 0;
+    return 0;
 }
